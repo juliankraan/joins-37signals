@@ -98,12 +98,13 @@
 
         .tooltip-content br {
             display: block;
-            margin-bottom: 10px; /* Adjust the space between paragraphs */
-            content: " ";
+            margin-bottom: 5px; 
+            /*content: " ";*/
         }
 
         .tooltip-content a {
             color: white;  
+            text-decoration: none;
         }
         
         .tooltip-content a:hover {
@@ -131,7 +132,7 @@
     <div id="tooltip" class="tooltip"></div>
     <script>
         const tooltips = {
-            yourself: { title: "About Me", icon: "person", content: "I have a BA in Game Design and an MA in Interaction Design.<br><br>I’ve called many places home—Zurich, Cologne, Copenhagen, San Francisco, Lima, and now Barcelona.<br>Beyond design, I love playing cards, potting plants, and making lists." },
+            yourself: { title: "About Me", icon: "person", content: "<p>I have a BA in Game Design and an MA in Interaction Design.<p>I’ve called many places home—Zurich, Cologne, Copenhagen, San Francisco, Lima, and now Barcelona.<p>Beyond design, I love playing cards, potting plants, and making lists." },
             whatYouCanBring: { title: "Expertise & Strengths", icon: "military_tech", content: "In my 15 years as a designer, I’ve worked across design agencies, innovation consulting, and startups—twice as a founding designer.\n\nI’m just as comfortable tackling abstract challenges as I am refining the smallest design details. Beyond Product Design, I dive into Motion Design, Brand Design, and even dabble in Creative Coding. If needed, I can hire, mentor, and grow a team." },
             whyThisPosition: { title: "Role Fit", icon: "work", content: "I’m excited to join a company with strong methodologies, thoughtful product development, and an independent spirit.<br>After more than six years in VC-backed startups, 37signals’ commitment to self-funded growth and its resistance to investor-driven pressures deeply resonates with me." },
             whyDesigner: { title: "Design Passion", icon: "brush", content: "I’m a designer at heart because design is the art of problem-solving. It’s a way to make meaningful, even if small, improvements to people’s lives.\nI love the creative process—the ability to bring something into the world that didn’t exist before.\nAnd at its core, design is a puzzle, one that’s both challenging and deeply satisfying to solve." },
@@ -143,15 +144,11 @@
         document.addEventListener('DOMContentLoaded', () => {
             const tooltip = document.getElementById('tooltip');
             const tooltipWidth = document.getElementById('tooltip').offsetWidth;
-document.querySelectorAll('.highlight').forEach(element => {
+        
+            document.querySelectorAll('.highlight').forEach(element => {
                 element.addEventListener('mouseenter', (event) => {
                     const key = element.getAttribute('data-key');
                     const data = tooltips[key];
-                    if (data) {
-                        tooltip.innerHTML = `<div class='tooltip-title'><i class='material-icons'>${data.icon}</i> ${data.title}</div>
-                        <div class='tooltip-content'>${data.content.replace(/\n/g, '<br><br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</div>`;
-                        tooltip.style.visibility = 'visible';
-                    }
                 });
 
                 element.addEventListener('mousemove', (event) => {
