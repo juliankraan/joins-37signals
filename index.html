@@ -133,11 +133,10 @@ document.querySelectorAll('.highlight').forEach(element => {
                     const key = element.getAttribute('data-key');
                     const data = tooltips[key];
                     if (data) {
-                        tooltip.innerHTML = `<div class='tooltip-title'><i class='material-icons'>${data.icon}</i> ${data.title}</div><div class='tooltip-content'>${data.content.replace(/
-
-/g, '<br><br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</div>`;
+                        tooltip.innerHTML = `<div class='tooltip-title'><i class='material-icons'>${data.icon}</i> ${data.title}</div>
+                        <div class='tooltip-content'>${data.content.replace(/\n/g, '<br><br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</div>`;
                         tooltip.style.visibility = 'visible';
-                    }
+}
                 });
 
                 element.addEventListener('mousemove', (event) => {
