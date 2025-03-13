@@ -38,14 +38,14 @@
             overflow: hidden;
             mask-image: linear-gradient(to bottom, 
                 rgba(250, 250, 250, 0),   /* Fully transparent at the top */
-                rgba(250, 250, 250, 1) 10%,  /* Fully visible */
-                rgba(250, 250, 250, 1) 90%,  /* Fully visible */
+                rgba(250, 250, 250, 1) 20%,  /* Fully visible */
+                rgba(250, 250, 250, 1) 80%,  /* Fully visible */
                 rgba(250, 250, 250, 0)   /* Fully transparent at the bottom */
             );
             -webkit-mask-image: linear-gradient(to bottom, 
                 rgba(250, 250, 250, 0),
-                rgba(250, 250, 250, 1) 10%,
-                rgba(250, 250, 250, 1) 90%,
+                rgba(250, 250, 250, 1) 20%,
+                rgba(250, 250, 250, 1) 80%,
                 rgba(250, 250, 250, 0)
             );
         }
@@ -116,13 +116,13 @@
     <div id="tooltip" class="tooltip"></div>
     <script>
         const tooltips = {
-            yourself: { title: "Personal Introduction", icon: "person", content: "We want to get to know you beyond just your resume." },
-            whatYouCanBring: { title: "Your Strengths", icon: "military_tech", content: "Highlight the skills and qualities that make you a strong fit for this role." },
-            whyThisPosition: { title: "Role Fit", icon: "work", content: "Tell us why this job aligns with your career goals." },
-            whyDesigner: { title: "Design Passion", icon: "brush", content: "Share your motivation for working in design." },
-            whyWeb: { title: "Web Enthusiasm", icon: "language", content: "What excites you about designing for the web?" },
-            yourWork: { title: "Portfolio Showcase", icon: "folder", content: "Provide examples of your best projects." },
-            workOtherPeople: { title: "Inspiration", icon: "group", content: "Tell us about design work that inspires you." }
+            yourself: { title: "About Me", icon: "person", content: "I have a BA in Game Design and an MA in Interaction Design.<br>I’ve called many places home—Zurich, Cologne, Copenhagen, San Francisco, Lima, and now Barcelona.<br>Beyond design, I love playing cards, potting plants, and making lists." },
+            whatYouCanBring: { title: "Expertise & Strengths", icon: "military_tech", content: "In my 15 years as a designer, I’ve worked across design agencies, innovation consulting, and startups—twice as a founding designer.<br>I’m just as comfortable tackling abstract challenges as I am refining the smallest design details. Beyond Product Design, I dive into Motion Design, Brand Design, and even dabble in Creative Coding. If needed, I can hire, mentor, and grow a team." },
+            whyThisPosition: { title: "Role Fit", icon: "work", content: "I’m excited to join a company with strong methodologies, thoughtful product development, and an independent spirit.<br>After more than six years in VC-backed startups, 37signals’ commitment to self-funded growth and its resistance to investor-driven pressures deeply resonates with me." },
+            whyDesigner: { title: "Design Passion", icon: "brush", content: "I’m a designer at heart because design is the art of problem-solving. It’s a way to make meaningful, even if small, improvements to people’s lives.<br>I love the creative process—the ability to bring something into the world that didn’t exist before.<br>And at its core, design is a puzzle, one that’s both challenging and deeply satisfying to solve." },
+            whyWeb: { title: "Web Enthusiasm", icon: "language", content: "Designing for the web means freedom—freedom from physical locations, specific devices, and rigid boundaries. As both a user and a designer, I love that the web is endlessly adaptable, evolving with needs rather than dictating them.<br>That said, I also enjoy the creative constraints of designing for more focused environments—whether it’s a smartphone, a dashboard, or even a kitchen appliance display." },
+            yourWork: { title: "Portfolio", icon: "folder", content: "www.juliankraan.com" },
+            workOtherPeople: { title: "Inspiration", icon: "group", content: "TI’m amazed by how Framer, with a team likely a fraction of Figma’s size, has leapfrogged them in certain areas.<br>Notion’s systemic yet intuitive architecture is a huge inspiration for designing tools that empower users to become tool builders themselves.<br>And Felix Pfäffli, Zach Lieberman, and André Burnier make me want to dive into generative design properly—one day." }
         };
 
         document.addEventListener('DOMContentLoaded', () => {
