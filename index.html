@@ -1,19 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Application Site</title>
+    <title>Interactive Job Description</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+            overflow: hidden;
+            background-color: #FAFAFA;
+            font-family: 'Inter', sans-serif;
+            position: relative;
+        }
+
+        .job-description {
+            max-width: 600px;
+            height: 100vh;
+            padding: 18px;
+            background: white;
+            color: #202020;
+            font-size: 16px;
+            line-height: 24px;
+            border-radius: 8px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+            mask-image: linear-gradient(to bottom, 
+                rgba(250, 250, 250, 0),   /* Fully transparent at the top */
+                rgba(250, 250, 250, 1) 10%,  /* Fully visible */
+                rgba(250, 250, 250, 1) 90%,  /* Fully visible */
+                rgba(250, 250, 250, 0)   /* Fully transparent at the bottom */
+            );
+            -webkit-mask-image: linear-gradient(to bottom, 
+                rgba(250, 250, 250, 0),
+                rgba(250, 250, 250, 1) 10%,
+                rgba(250, 250, 250, 1) 90%,
+                rgba(250, 250, 250, 0)
+            );
+        }
+
+        .job-description p {
+            margin: 16px 0;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            background-color: #FFD700;
+            cursor: pointer;
+            position: relative;
+            padding: 1px 2px;
+            border-radius: 5px;
+        }
+
+        .tooltip {
+            visibility: hidden;
+            position: fixed;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            text-align: left;
+            padding: 15px;
+            border-radius: 10px;
+            width: 240px;
+            font-size: 13px;
+            line-height: 20px;
+            z-index: 10000;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .tooltip-title {
+            font-weight: 500;
+            color: #FFD700;
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .tooltip-title i {
+            font-size: 16px;
+            margin-right: 6px;
+        }
+
+        .tooltip-content {
+            font-weight: 400;
+            color: white;
         }
     </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-    <h1>Hello, I'm Julian 👋</h1>
-    <p>This is a simple website for my job application.</p>
+    <div class="job-description">
+        <p><strong>Benefits & Compensation</strong><br>
+        Basecamp pays in the top 10% of the industry based on San Francisco rates. Same position, same pay, no matter where you live. Depending on your skills and experience, we’re hiring either at the Senior level or the Lead level. Senior pays $193,858, Lead pays $229,064. We’ll determine where you fit during the interview process.</p>
+        
+        <p>Our benefits support a life well-lived away from work. Ample time off and all the resources you need to support you in doing the best work of your career. Our handbook has detailed information about the benefits we offer.</p>
+        
+        <p>Applicants from outside of the US will be offered a contractor role on comparable terms and equal pay with our domestic employees.</p>
+        
+        <p><strong>How to Apply</strong><br>
+        Please submit an application that speaks directly to this position. Tell us about <span class="highlight" data-key="yourself">yourself</span>, about <span class="highlight" data-key="whatYouCanBring">what you can bring</span> to 37signals, and <span class="highlight" data-key="whyThisPosition">why this position</span> is the right next step for you. Tell us <span class="highlight" data-key="whyDesigner">why you're a designer</span>. Tell us <span class="highlight" data-key="whyWeb">why you love working on the web</span>. Be descriptive, but don’t feel the need to write a novel — 800 words or so should be plenty. Last, be sure to show us <span class="highlight" data-key="yourWork">your work</span>, and <span class="highlight" data-key="workOtherPeople">work other people have done</span>.</p>
+        
+        <p><strong>What happens after you apply?</strong><br>
+        Once the deadline passes, we expect to take a week to complete our review of applications. You’ll hear from us by the end of March about advancement to the interview stage. Expect 2-3 interviews, all one hour, all remote, with your future colleagues, on your schedule. We’ll talk through your background, your approach to design, and dive into your professional knowledge. No gotchas or surprises.</p>
+    </div>
+    <div id="tooltip" class="tooltip"></div>
+    <script>
+        const tooltips = {
+            yourself: { title: "Personal Introduction", icon: "person", content: "We want to get to know you beyond just your resume." },
+            whatYouCanBring: { title: "Your Strengths", icon: "military_tech", content: "Highlight the skills and qualities that make you a strong fit for this role." },
+            whyThisPosition: { title: "Role Fit", icon: "work", content: "Tell us why this job aligns with your career goals." },
+            whyDesigner: { title: "Design Passion", icon: "brush", content: "Share your motivation for working in design." },
+            whyWeb: { title: "Web Enthusiasm", icon: "language", content: "What excites you about designing for the web?" },
+            yourWork: { title: "Portfolio Showcase", icon: "folder", content: "Provide examples of your best projects." },
+            workOtherPeople: { title: "Inspiration", icon: "group", content: "Tell us about design work that inspires you." }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const tooltip = document.getElementById('tooltip');
+            const tooltipWidth = document.getElementById('tooltip').offsetWidth;
+document.querySelectorAll('.highlight').forEach(element => {
+                element.addEventListener('mouseenter', (event) => {
+                    const key = element.getAttribute('data-key');
+                    const data = tooltips[key];
+                    if (data) {
+                        tooltip.innerHTML = `<div class='tooltip-title'><i class='material-icons'>${data.icon}</i> ${data.title}</div><div class='tooltip-content'>${data.content.replace(/
+
+/g, '<br><br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</div>`;
+                        tooltip.style.visibility = 'visible';
+                    }
+                });
+
+                element.addEventListener('mousemove', (event) => {
+                    tooltip.style.top = `${event.clientY + 20}px`;
+                    tooltip.style.left = `${event.clientX - (tooltipWidth / 2)}px`;
+                });
+
+                element.addEventListener('mouseleave', () => {
+                    tooltip.style.visibility = 'hidden';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
