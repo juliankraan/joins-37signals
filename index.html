@@ -80,18 +80,21 @@
 				line-height: 20px;
 				z-index: 10000;
 				font-family: 'Inter', sans-serif;
+				pointer-events: none; 
 			}
 
 			.tooltip.visible {
 				opacity: 1;
-				transform: translateY(0); /* Move to normal position */
-				transition: opacity 0.2s ease-out, transform 0.2s ease-out; /* Smooth appear animation */
+				transform: translateY(0);
+				transition: opacity 0.2s ease-out, transform 0.2s ease-out; 
+				pointer-events: auto;
 			}
 
 			.tooltip.hiding {
     				opacity: 0;
-    				transform: translateY(10px); /* Move downward while fading out */
-				transition: opacity 0.2s ease-in, transform 0.2s ease-in; /* Smooth disappear animation */
+    				transform: translateY(10px);
+				transition: opacity 0.2s ease-in, transform 0.2s ease-in;
+				pointer-events: none; 
 			}
 
 			.tooltip-title {
@@ -173,21 +176,22 @@
 					element.addEventListener('click', (event) => {
 						const key = element.getAttribute('data-key');
 						const data = tooltips[key];
-				
+						
 						if (data) {
-							// If tooltip is already open, animate closing before switching content
-				                	if (tooltip.classList.contains('visible')) {
-				                    		tooltip.classList.remove('visible');
-				                    		setTimeout(() => showTooltip(element, data), 150); // Delay re-opening for smooth effect
-				               		} else {
-				                    		showTooltip(element, data);
-				                	}
-				            	}
+				        		// If a tooltip is already visible, animate it out before switching
+				        		if (tooltip.classList.contains('visible')) {
+				        			tooltip.classList.add('hiding');
+				        			setTimeout(() => {
+				                			showTooltip(element, data);
+								}, 200); // Matches the hide animation duration
+				        		} else {
+				        			showTooltip(element, data);
+							}
+						}
 				
-				            	// Prevent event from bubbling to document (so it doesn’t immediately close)
-				            	event.stopPropagation();
+						event.stopPropagation();
 					});
-			    	});
+				});
 			
 			    	// Close tooltip when clicking outside any highlight
 				document.addEventListener('click', () => {
