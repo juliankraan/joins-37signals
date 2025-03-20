@@ -1,242 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Julian joins 37signals</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+	<head>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Julian joins 37signals</title>
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
 
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            width: 100vw;
-            margin: 0;
-            overflow: hidden;
-            background-color: #FAFAFA;
-            font-family: 'Inter', sans-serif;
-            position: relative;
-        }
+			body {
+			    display: flex;
+			    justify-content: center;
+			    align-items: center;
+			    height: 100vh;
+			    width: 100vw;
+			    margin: 0;
+			    overflow: hidden;
+			    background-color: #FAFAFA;
+			    font-family: 'Inter', sans-serif;
+			    position: relative;
+			}
 
-        .job-description {
-            max-width: 600px;
-            height: 100vh;
-            max-height: 600px;
-            padding: 18px;
-            background: white;
-            color: #202020;
-            font-size: 16px;
-            line-height: 24px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            overflow: hidden;
-            mask-image: linear-gradient(to bottom, 
-                rgba(250, 250, 250, 0),   /* Fully transparent at the top */
-                rgba(250, 250, 250, 1) 20%,  /* Fully visible */
-                rgba(250, 250, 250, 1) 80%,  /* Fully visible */
-                rgba(250, 250, 250, 0)   /* Fully transparent at the bottom */
-            );
-            -webkit-mask-image: linear-gradient(to bottom, 
-                rgba(250, 250, 250, 0),
-                rgba(250, 250, 250, 1) 20%,
-                rgba(250, 250, 250, 1) 80%,
-                rgba(250, 250, 250, 0)
-            );
-        }
+			.job-description {
+			    max-width: 600px;
+			    height: 100vh;
+			    max-height: 600px;
+			    padding: 18px;
+			    background: white;
+			    color: #202020;
+			    font-size: 16px;
+			    line-height: 24px;
+			    position: relative;
+			    display: flex;
+			    flex-direction: column;
+			    justify-content: center;
+			    overflow: hidden;
+			    mask-image: linear-gradient(to bottom,
+			        rgba(250, 250, 250, 0),   /* Fully transparent at the top */
+			        rgba(250, 250, 250, 1) 20%,  /* Fully visible */
+			        rgba(250, 250, 250, 1) 80%,  /* Fully visible */
+			        rgba(250, 250, 250, 0)   /* Fully transparent at the bottom */
+			    );
+			    -webkit-mask-image: linear-gradient(to bottom,
+			        rgba(250, 250, 250, 0),
+			        rgba(250, 250, 250, 1) 20%,
+			        rgba(250, 250, 250, 1) 80%,
+			        rgba(250, 250, 250, 0)
+			    );
+			}
 
-        .job-description p {
-            margin: 16px 0;
-            line-height: 1.5;
-        }
+			.job-description p {
+			    margin: 16px 0;
+			    line-height: 1.5;
+			}
 
-        .highlight {
-            background-color: #FFD700;
-            cursor: pointer;
-            border-radius: 5px;
-            padding: 1px 4px; 
-            display: inline-block; 
-            margin: 0 -2px; 
-            box-decoration-break: clone;
-            -webkit-box-decoration-break: clone; 
-        }
+			.highlight {
+			    background-color: #FFD700;
+			    cursor: pointer;
+			    border-radius: 5px;
+			    padding: 1px 4px;
+			    display: inline-block;
+			    margin: 0 -2px;
+			    box-decoration-break: clone;
+			    -webkit-box-decoration-break: clone;
+			}
 
-        .tooltip {
-            visibility: hidden;
-            position: fixed;
-            background-color: rgba(0, 0, 0, 0.9);
-            color: white;
-            text-align: left;
-            padding: 15px;
-            border-radius: 10px;
-            width: 240px;
-            font-size: 13px;
-            line-height: 20px;
-            z-index: 10000;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .tooltip-title {
-            font-weight: 500;
-            color: #FFD700;
-            display: flex;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-
-        .tooltip-title i {
-            font-size: 16px;
-            margin-right: 6px;
-        }
-
-        .tooltip-content {
-            font-weight: 400;
-            color: white;
-        }
-
-        .tooltip-content a {
-            color: white;  
-            text-decoration: none;
-        }
-        
-        .tooltip-content a:hover {
-            opacity: 0.8;
-        }
-        
-    </style>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-</head>
-<body>
-    <div class="job-description">
-        <p><strong>Benefits & Compensation</strong><br>
-        Basecamp pays in the top 10% of the industry based on San Francisco rates. Same position, same pay, no matter where you live. Depending on your skills and experience, we’re hiring either at the Senior level or the Lead level. Senior pays $193,858, Lead pays $229,064. We’ll determine where you fit during the interview process.</p>
-        
-        <p>Our benefits support a life well-lived away from work. Ample time off and all the resources you need to support you in doing the best work of your career. Our handbook has detailed information about the benefits we offer.</p>
-        
-        <p>Applicants from outside of the US will be offered a contractor role on comparable terms and equal pay with our domestic employees.</p>
-        
-        <p><strong>How to Apply</strong><br>
-        Please submit an application that speaks directly to this position. Tell us about <span class="highlight" data-key="yourself">yourself</span>, about what you can <span class="highlight" data-key="whatYouCanBring">bring</span> to 37signals, and why this <span class="highlight" data-key="whyThisPosition">position</span> is the right next step for you. Tell us why you're a <span class="highlight" data-key="whyDesigner">designer</span>. Tell us why you love working on the <span class="highlight" data-key="whyWeb">web</span>. Be descriptive, but don’t feel the need to write a novel — 800 words or so should be plenty. Last, be sure to show us your <span class="highlight" data-key="yourWork">work</span>, and work other <span class="highlight" data-key="workOtherPeople">people</span> have done.</p>
-        
-        <p><strong>What happens after you apply?</strong><br>
-        Once the deadline passes, we expect to take a week to complete our review of applications. You’ll hear from us by the end of March about advancement to the interview stage. Expect 2-3 interviews, all one hour, all remote, with your future colleagues, on your schedule. We’ll talk through your background, your approach to design, and dive into your professional knowledge. No gotchas or surprises.</p>
-
-        <p>After interviews, the final candidates will be given an at-home design challenge. The exercise is representative of the kind of work we do, and it helps us understand how you’d approach new problems from scratch. We invite no more than 5 candidates to this stage, and those candidates should expect to spend about 3 work days completing the project. You’ll be compensated for your time.</p>
-    </div>
-    <div id="tooltip" class="tooltip"></div>
-    <script>
-        const tooltips = {
-            yourself: { title: "About Me", icon: "person", content: "<p>I have a BA in Game Design and an MA in Interaction Design.<p>I’ve called many places home—Zurich, Cologne, Copenhagen, San Francisco, Lima, and now Barcelona.</p><p>Beyond design, I love playing cards, potting plants, and making lists.</p>" },
-            whatYouCanBring: { title: "Expertise & Strengths", icon: "military_tech", content: "<p>In my 15 years as a designer, I’ve worked across design agencies, innovation consulting, and startups—twice as a founding designer.</p><p>I’m just as comfortable tackling abstract challenges as I am refining the smallest design details. Beyond Product Design, I dive into Motion Design, Brand Design, and even dabble in Creative Coding. If needed, I can hire, mentor, and grow a team.</p>" },
-            whyThisPosition: { title: "Role Fit", icon: "work", content: "<p>I’m excited to join a company with strong methodologies, thoughtful product development, and an independent spirit.</p><p>After more than six years in VC-backed startups, 37signals’ commitment to self-funded growth and its resistance to investor-driven pressures deeply resonates with me.</p>" },
-            whyDesigner: { title: "Design Passion", icon: "brush", content: "<p>I’m a designer at heart because design is the art of problem-solving. It’s a way to make meaningful, even if small, improvements to people’s lives.</p><p>I love the creative process—the ability to bring something into the world that didn’t exist before.</p><p>And at its core, design is a puzzle, one that’s both challenging and deeply satisfying to solve.</p>" },
-            whyWeb: { title: "Web Enthusiasm", icon: "language", content: "<p>Designing for the web means freedom—freedom from physical locations, specific devices, and rigid boundaries. As both a user and a designer, I love that the web is endlessly adaptable, evolving with needs rather than dictating them.</p><p>That said, I also enjoy the creative constraints of designing for more focused environments—whether it’s a smartphone, a dashboard, or even a kitchen appliance display.</p>" },
-            yourWork: { title: "Portfolio", icon: "folder", content: "<p><a href='https://www.juliankraan.com' target='_blank'>www.juliankraan.com</a></p>" },
-            workOtherPeople: { title: "Inspiration", icon: "group", content: "<p>I’m amazed by how Framer, with a team likely a fraction of Figma’s size, has leapfrogged them in certain areas.</p><p>Notion’s systemic yet intuitive architecture is a huge inspiration for designing tools that empower users to become tool builders themselves.</p><p>And Felix Pfäffli, Zach Lieberman, and André Burnier make me want to dive into generative design properly—one day.</p>" }
-        };
-
-        document.addEventListener('DOMContentLoaded', () => {
-    const tooltip = document.getElementById('tooltip');
-
-            document.querySelectorAll('.highlight').forEach(element => {
-        element.addEventListener('click', (event) => {
-            const key = element.getAttribute('data-key');
-            const data = tooltips[key];
-    
-            if (data) {
-                tooltip.innerHTML = `
-                    <div class='tooltip-title'>
-                        <i class='material-icons'>${data.icon}</i> ${data.title}
-                    </div>
-                    <div class='tooltip-content'>${data.content}</div>
-                `;
-                
-                // Position tooltip
-                const tooltipRect = tooltip.getBoundingClientRect();
-                const screenWidth = window.innerWidth;
-                const screenHeight = window.innerHeight;
-                
-                let leftPos = event.clientX - (tooltipRect.width / 2);
-                let topPos = event.clientY + 20; // Default below cursor
-    
-                if (leftPos < 5) leftPos = 5;
-                if (leftPos + tooltipRect.width > screenWidth) {
-                    leftPos = screenWidth - tooltipRect.width - 5;
-                }
-                if (topPos + tooltipRect.height > screenHeight) {
-                    topPos = event.clientY - tooltipRect.height - 10;
-                }
-    
-                tooltip.style.top = `${topPos}px`;
-                tooltip.style.left = `${leftPos}px`;
-    
-                // Show tooltip with animation
-                tooltip.classList.add('visible');
+			.tooltip {
+                opacity: 0;
+                transform: scale(0.8);
+                transition: opacity 0.3s ease-out, transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+                position: fixed;
+                background-color: rgba(0, 0, 0, 0.9);
+                color: white;
+                text-align: left;
+                padding: 15px;
+                border-radius: 10px;
+                width: 240px;
+                font-size: 13px;
+                line-height: 20px;
+                z-index: 10000;
+                font-family: 'Inter', sans-serif;
             }
-        });
-    });
-    
-    // Close tooltip when clicking anywhere else
-    document.addEventListener('click', (event) => {
-        if (!event.target.classList.contains('highlight')) {
-            tooltip.classList.remove('visible');
-        }
-    });
-
             
-    /*document.querySelectorAll('.highlight').forEach(element => {
-        element.addEventListener('mouseenter', (event) => {
-            const key = element.getAttribute('data-key');
-            const data = tooltips[key];
-
-            if (data) {
-                tooltip.innerHTML = `
-                    <div class='tooltip-title'>
-                        <i class='material-icons'>${data.icon}</i> ${data.title}
-                    </div>
-                    <div class='tooltip-content'>${data.content}</div>
-                `;
-                tooltip.style.opacity = '1';
-                tooltip.style.visibility = 'visible';
+            .tooltip.visible {
+                opacity: 1;
+                transform: scale(1);
             }
-        });
 
-        element.addEventListener('mousemove', (event) => {
-            const tooltipRect = tooltip.getBoundingClientRect();
-            const screenWidth = window.innerWidth;
-            const screenHeight = window.innerHeight;
-            
-            let leftPos = event.clientX - (tooltipRect.width / 2);
-            let topPos = event.clientY + 20; // Default below the cursor
-        
-            // Prevent tooltip from going off the left edge
-            if (leftPos < 5) leftPos = 5;
-        
-            // Prevent tooltip from going off the right edge
-            if (leftPos + tooltipRect.width > screenWidth) {
-                leftPos = screenWidth - tooltipRect.width - 5;
-            }
-        
-            // Prevent tooltip from going off the bottom edge
-            if (topPos + tooltipRect.height > screenHeight) {
-                topPos = event.clientY - tooltipRect.height - 10; // Show above cursor instead
-            }
-        
-            tooltip.style.top = `${topPos}px`;
-            tooltip.style.left = `${leftPos}px`;
-        });
+			.tooltip-title {
+			    font-weight: 500;
+			    color: #FFD700;
+			    display: flex;
+			    align-items: center;
+			    margin-bottom: 5px;
+			}
 
-        element.addEventListener('mouseleave', () => {
-            tooltip.style.opacity = '0';
-            tooltip.style.visibility = 'hidden';
-        });
-    });/*
-});
-    </script>
-</body>
+			.tooltip-title i {
+			    font-size: 16px;
+			    margin-right: 6px;
+			}
+
+			.tooltip-content {
+			    font-weight: 400;
+			    color: white;
+			}
+
+			.tooltip-content a {
+			    color: white;
+			    text-decoration: none;
+			}
+
+			.tooltip-content a:hover {
+			    opacity: 0.8;
+			}
+		</style>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+	</head>
+	<body>
+		<div class="job-description">
+			<p>
+				<strong>Benefits & Compensation</strong><br />
+				Basecamp pays in the top 10% of the industry based on San Francisco rates. Same position, same pay, no matter where you live. Depending on your skills and experience, we’re hiring either at the Senior level or the Lead
+				level. Senior pays $193,858, Lead pays $229,064. We’ll determine where you fit during the interview process.
+			</p>
+
+			<p>Our benefits support a life well-lived away from work. Ample time off and all the resources you need to support you in doing the best work of your career. Our handbook has detailed information about the benefits we offer.</p>
+
+			<p>Applicants from outside of the US will be offered a contractor role on comparable terms and equal pay with our domestic employees.</p>
+
+			<p>
+				<strong>How to Apply</strong><br />
+				Please submit an application that speaks directly to this position. Tell us about <span class="highlight" data-key="yourself">yourself</span>, about what you can
+				<span class="highlight" data-key="whatYouCanBring">bring</span> to 37signals, and why this <span class="highlight" data-key="whyThisPosition">position</span> is the right next step for you. Tell us why you're a
+				<span class="highlight" data-key="whyDesigner">designer</span>. Tell us why you love working on the <span class="highlight" data-key="whyWeb">web</span>. Be descriptive, but don’t feel the need to write a novel — 800 words
+				or so should be plenty. Last, be sure to show us your <span class="highlight" data-key="yourWork">work</span>, and work other <span class="highlight" data-key="workOtherPeople">people</span> have done.
+			</p>
+
+			<p>
+				<strong>What happens after you apply?</strong><br />
+				Once the deadline passes, we expect to take a week to complete our review of applications. You’ll hear from us by the end of March about advancement to the interview stage. Expect 2-3 interviews, all one hour, all remote,
+				with your future colleagues, on your schedule. We’ll talk through your background, your approach to design, and dive into your professional knowledge. No gotchas or surprises.
+			</p>
+
+			<p>
+				After interviews, the final candidates will be given an at-home design challenge. The exercise is representative of the kind of work we do, and it helps us understand how you’d approach new problems from scratch. We invite
+				no more than 5 candidates to this stage, and those candidates should expect to spend about 3 work days completing the project. You’ll be compensated for your time.
+			</p>
+		</div>
+		<div id="tooltip" class="tooltip"></div>
+		<script>
+			        const tooltips = {
+			            yourself: { title: "About Me", icon: "person", content: "<p>I have a BA in Game Design and an MA in Interaction Design.<p>I’ve called many places home—Zurich, Cologne, Copenhagen, San Francisco, Lima, and now Barcelona.</p><p>Beyond design, I love playing cards, potting plants, and making lists.</p>" },
+			            whatYouCanBring: { title: "Expertise & Strengths", icon: "military_tech", content: "<p>In my 15 years as a designer, I’ve worked across design agencies, innovation consulting, and startups—twice as a founding designer.</p><p>I’m just as comfortable tackling abstract challenges as I am refining the smallest design details. Beyond Product Design, I dive into Motion Design, Brand Design, and even dabble in Creative Coding. If needed, I can hire, mentor, and grow a team.</p>" },
+			            whyThisPosition: { title: "Role Fit", icon: "work", content: "<p>I’m excited to join a company with strong methodologies, thoughtful product development, and an independent spirit.</p><p>After more than six years in VC-backed startups, 37signals’ commitment to self-funded growth and its resistance to investor-driven pressures deeply resonates with me.</p>" },
+			            whyDesigner: { title: "Design Passion", icon: "brush", content: "<p>I’m a designer at heart because design is the art of problem-solving. It’s a way to make meaningful, even if small, improvements to people’s lives.</p><p>I love the creative process—the ability to bring something into the world that didn’t exist before.</p><p>And at its core, design is a puzzle, one that’s both challenging and deeply satisfying to solve.</p>" },
+			            whyWeb: { title: "Web Enthusiasm", icon: "language", content: "<p>Designing for the web means freedom—freedom from physical locations, specific devices, and rigid boundaries. As both a user and a designer, I love that the web is endlessly adaptable, evolving with needs rather than dictating them.</p><p>That said, I also enjoy the creative constraints of designing for more focused environments—whether it’s a smartphone, a dashboard, or even a kitchen appliance display.</p>" },
+			            yourWork: { title: "Portfolio", icon: "folder", content: "<p><a href='https://www.juliankraan.com' target='_blank'>www.juliankraan.com</a></p>" },
+			            workOtherPeople: { title: "Inspiration", icon: "group", content: "<p>I’m amazed by how Framer, with a team likely a fraction of Figma’s size, has leapfrogged them in certain areas.</p><p>Notion’s systemic yet intuitive architecture is a huge inspiration for designing tools that empower users to become tool builders themselves.</p><p>And Felix Pfäffli, Zach Lieberman, and André Burnier make me want to dive into generative design properly—one day.</p>" }
+			        };
+
+			        document.addEventListener('DOMContentLoaded', () => {
+			    const tooltip = document.getElementById('tooltip');
+
+			            document.querySelectorAll('.highlight').forEach(element => {
+			        element.addEventListener('click', (event) => {
+			            const key = element.getAttribute('data-key');
+			            const data = tooltips[key];
+
+			            if (data) {
+			                tooltip.innerHTML = `
+			                    <div class='tooltip-title'>
+			                        <i class='material-icons'>${data.icon}</i> ${data.title}
+			                    </div>
+			                    <div class='tooltip-content'>${data.content}</div>
+			                `;
+
+			                // Position tooltip
+			                const tooltipRect = tooltip.getBoundingClientRect();
+			                const screenWidth = window.innerWidth;
+			                const screenHeight = window.innerHeight;
+
+			                let leftPos = event.clientX - (tooltipRect.width / 2);
+			                let topPos = event.clientY + 20; // Default below cursor
+
+			                if (leftPos < 5) leftPos = 5;
+			                if (leftPos + tooltipRect.width > screenWidth) {
+			                    leftPos = screenWidth - tooltipRect.width - 5;
+			                }
+			                if (topPos + tooltipRect.height > screenHeight) {
+			                    topPos = event.clientY - tooltipRect.height - 10;
+			                }
+
+			                tooltip.style.top = `${topPos}px`;
+			                tooltip.style.left = `${leftPos}px`;
+
+			                // Show tooltip with animation
+			                tooltip.classList.add('visible');
+			            }
+			        });
+			    });
+
+			    // Close tooltip when clicking anywhere else
+			    document.addEventListener('click', (event) => {
+			        if (!event.target.classList.contains('highlight')) {
+			            tooltip.classList.remove('visible');
+			        }
+			    });
+			});
+		</script>
+	</body>
 </html>
