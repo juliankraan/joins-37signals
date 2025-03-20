@@ -204,11 +204,23 @@
 						});
 					});
 
-					// Close tooltip when clicking anywhere else
 					document.addEventListener('click', (event) => {
 						if (!event.target.classList.contains('highlight')) {
 							tooltip.classList.remove('visible');
 						}
+					});
+					
+					// Close the tooltip smoothly before switching to a new one
+					document.querySelectorAll('.highlight').forEach(element => {
+						element.addEventListener('click', () => {
+							if (tooltip.classList.contains('visible')) {
+								tooltip.classList.remove('visible');
+					        		setTimeout(() => {
+					        			tooltip.classList.add('visible');
+					        		}, 150); // Small delay for smooth transition
+							}
+					    	});
+					});
 				});
 			});
 		</script>
