@@ -162,66 +162,64 @@
 
 			document.addEventListener('DOMContentLoaded', () => {
 				const tooltip = document.getElementById('tooltip');
+			
 				document.querySelectorAll('.highlight').forEach(element => {
 					element.addEventListener('click', (event) => {
 						const key = element.getAttribute('data-key');
 						const data = tooltips[key];
+				
 						if (data) {
-							tooltip.innerHTML = `
-								<div class='tooltip-title'>
-									<i class='material-icons'>${data.icon}</i> ${data.title}
-								</div>
-								<div class='tooltip-content'>${data.content}</div>
-							`;
-
-							// Get bounding box of the clicked highlight
-							const rect = element.getBoundingClientRect();
-							const tooltipRect = tooltip.getBoundingClientRect();
-							const screenWidth = window.innerWidth;
-							const screenHeight = window.innerHeight;
-
-							let leftPos = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
-							let topPos = rect.top + window.scrollY - tooltipRect.height - 10; // Position above highlight
-
-							// Ensure tooltip stays within screen bounds
-							if (leftPos < 5) leftPos = 5;
-							if (leftPos + tooltipRect.width > screenWidth) {
-								leftPos = screenWidth - tooltipRect.width - 5;
-							}
-							if (topPos < 5) {
-								topPos = rect.bottom + window.scrollY + 10; // Position below if there's no space above
-							}
-
-							tooltip.style.top = `${topPos}px`;
-							tooltip.style.left = `${leftPos}px`;
-
-							// Animate tooltip in
-								tooltip.classList.add('visible');
-							}
-
-							// Prevent event from bubbling to document (so it doesn’t immediately close)
-							event.stopPropagation();
-						});
+							// If tooltip is already open, animate closing before switching content
+				                	if (tooltip.classList.contains('visible')) {
+				                    		tooltip.classList.remove('visible');
+				                    		setTimeout(() => showTooltip(element, data), 150); // Delay re-opening for smooth effect
+				               		} else {
+				                    		showTooltip(element, data);
+				                	}
+				            	}
+				
+				            	// Prevent event from bubbling to document (so it doesn’t immediately close)
+				            	event.stopPropagation();
 					});
-
-					document.addEventListener('click', (event) => {
-						if (!event.target.classList.contains('highlight')) {
-							tooltip.classList.remove('visible');
-						}
-					});
-					
-					// Close the tooltip smoothly before switching to a new one
-					document.querySelectorAll('.highlight').forEach(element => {
-						element.addEventListener('click', () => {
-							if (tooltip.classList.contains('visible')) {
-								tooltip.classList.remove('visible');
-					        		setTimeout(() => {
-					        			tooltip.classList.add('visible');
-					        		}, 150); // Small delay for smooth transition
-							}
-					    	});
-					});
-				});
+			    	});
+			
+			    	// Close tooltip when clicking outside any highlight
+			    	document.addEventListener('click', () => {
+			        	tooltip.classList.remove('visible');
+			    	});
+			
+			    function showTooltip(element, data) {
+			        tooltip.innerHTML = `
+			            <div class='tooltip-title'>
+			                <i class='material-icons'>${data.icon}</i> ${data.title}
+			            </div>
+			            <div class='tooltip-content'>${data.content}</div>
+			        `;
+			
+			        // Position tooltip relative to the clicked highlight
+			        const rect = element.getBoundingClientRect();
+			        const tooltipRect = tooltip.getBoundingClientRect();
+			        const screenWidth = window.innerWidth;
+			        const screenHeight = window.innerHeight;
+			
+			        let leftPos = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
+			        let topPos = rect.top + window.scrollY - tooltipRect.height - 10; // Default above highlight
+			
+			        // Keep tooltip within screen bounds
+			        if (leftPos < 5) leftPos = 5;
+			        if (leftPos + tooltipRect.width > screenWidth) {
+			            leftPos = screenWidth - tooltipRect.width - 5;
+			        }
+			        if (topPos < 5) {
+			            topPos = rect.bottom + window.scrollY + 10; // Move below highlight if needed
+			        }
+			
+			        tooltip.style.top = `${topPos}px`;
+			        tooltip.style.left = `${leftPos}px`;
+			
+			        // Show tooltip with animation
+			        tooltip.classList.add('visible');
+			    }
 			});
 		</script>
 	</body>
