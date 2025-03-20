@@ -25,7 +25,7 @@
 			.job-description {
 				max-width: 600px;
 				height: 100vh;
-				max-height: 600px;
+				max-height: 800px;
 				padding: 18px;
 				background: white;
 				color: #202020;
@@ -86,14 +86,14 @@
 			.tooltip.visible {
 				opacity: 1;
 				transform: translateY(0);
-				transition: opacity 0.2s ease-out, transform 0.2s ease-out; 
+				transition: opacity 0.1s ease-out, transform 0.1s ease-out; 
 				pointer-events: auto;
 			}
 
 			.tooltip.hiding {
     				opacity: 0;
     				transform: translateY(10px);
-				transition: opacity 0.2s ease-in, transform 0.2s ease-in;
+				transition: opacity 0.1s ease-in, transform 0.1s ease-in;
 				pointer-events: none; 
 			}
 
@@ -165,8 +165,8 @@
 				whyThisPosition: { title: "Role Fit", icon: "work", content: "<p>I’m excited to join a company with strong methodologies, thoughtful product development, and an independent spirit.</p><p>After more than six years in VC-backed startups, 37signals’ commitment to self-funded growth and its resistance to investor-driven pressures deeply resonates with me.</p>" },
 				whyDesigner: { title: "Design Passion", icon: "brush", content: "<p>I’m a designer at heart because design is the art of problem-solving. It’s a way to make meaningful, even if small, improvements to people’s lives.</p><p>I love the creative process—the ability to bring something into the world that didn’t exist before.</p><p>And at its core, design is a puzzle, one that’s both challenging and deeply satisfying to solve.</p>" },
 				whyWeb: { title: "Web Enthusiasm", icon: "language", content: "<p>Designing for the web means freedom—freedom from physical locations, specific devices, and rigid boundaries. As both a user and a designer, I love that the web is endlessly adaptable, evolving with needs rather than dictating them.</p><p>That said, I also enjoy the creative constraints of designing for more focused environments—whether it’s a smartphone, a dashboard, or even a kitchen appliance display.</p>" },
-				yourWork: { title: "Portfolio", icon: "folder", content: "<p><a href='https://www.juliankraan.com' target='_blank'>www.juliankraan.com</a></p>" },
-				workOtherPeople: { title: "Inspiration", icon: "group", content: "<p>I’m amazed by how Framer, with a team likely a fraction of Figma’s size, has leapfrogged them in certain areas.</p><p>Notion’s systemic yet intuitive architecture is a huge inspiration for designing tools that empower users to become tool builders themselves.</p><p>And Felix Pfäffli, Zach Lieberman, and André Burnier make me want to dive into generative design properly—one day.</p>" }
+				yourWork: { title: "Portfolio", icon: "folder", content: "<p>See some of my professional and personal work at <a href='https://www.juliankraan.com' target='_blank'>juliankraan.com</a>. From product design to visual experiments, it’s a mix of what I love creating.</p>" },
+				workOtherPeople: { title: "Inspiration", icon: "group", content: "<p>I’m amazed by how <a href='https://www.framer.com' target='_blank'>Framer</a>, with a team likely a fraction of Figma’s size, has leapfrogged them in certain areas.</p><p><a href='https://www.notion.com' target='_blank'>Notion’s</a> systemic yet intuitive architecture is a huge inspiration for designing tools that empower users to become tool builders themselves.</p><p>And <a href='https://www.studiofeixen.ch' target='_blank'>Felix Pfäffli</a>, <a href='https://www.studiofeixen.ch' target='_blank'>Zach Lieberman</a>, and <a href='https://www.andreburnier.com' target='_blank'>André Burnier</a> make me want to dive into generative design properly—one day.</p>" }
 			};
 
 			document.addEventListener('DOMContentLoaded', () => {
@@ -200,7 +200,7 @@
         					tooltip.classList.add('hiding'); // Start fade-out animation
         					setTimeout(() => {
             						tooltip.classList.remove('visible', 'hiding'); // Fully hide tooltip after animation
-        					}, 200);
+        					}, 100);
     					}
 				});
 				
