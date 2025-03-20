@@ -83,15 +83,15 @@
 				pointer-events: none; 
 			}
 
-			.tooltip::after {
+			.tooltip-arrow {
 				content: "";
 				position: absolute;
 				top: -12px; /* Moves arrow above the tooltip */
-				left: 50%;
-				transform: translateX(-50%);
-				border-width: 6px;
-				border-style: solid;
-				border-color: transparent transparent rgba(0, 0, 0, 0.9) transparent;
+				width: 0;
+				height: 0;
+				border-left: 6px solid transparent;
+				border-right: 6px solid transparent;
+				border-bottom: 6px solid rgba(0, 0, 0, 0.9); /* Arrow pointing down */
 			}
 
 			.tooltip.visible {
@@ -228,24 +228,30 @@
 					const tooltipRect = tooltip.getBoundingClientRect();
 					const screenWidth = window.innerWidth;
 					const screenHeight = window.innerHeight;
-			
+					
 					let leftPos = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
-					/*let topPos = rect.top + window.scrollY - tooltipRect.height - 10; // Default above highlight*/
-					let topPos = rect.bottom + window.scrollY + 10; // Tooltip below highlights
+					let topPos = rect.bottom + window.scrollY + 10; // Default below highlight
 					
 					// Keep tooltip within screen bounds
 					if (leftPos < 5) leftPos = 5;
 					if (leftPos + tooltipRect.width > screenWidth) {
 						leftPos = screenWidth - tooltipRect.width - 5;
 					}
-					if (topPos < 5) {
-						topPos = rect.bottom + window.scrollY + 10; // Move below highlight if needed
-					}
 					
 					tooltip.style.top = `${topPos}px`;
 					tooltip.style.left = `${leftPos}px`;
 					
-					// Show tooltip with animation
+					// Adjust arrow position relative to highlight
+					const arrow = document.createElement("div");
+					arrow.classList.add("tooltip-arrow");
+					tooltip.appendChild(arrow);
+					
+					let arrowLeft = rect.left + rect.width / 2 - leftPos - 6; // Offset by half arrow size
+					if (arrowLeft < 10) arrowLeft = 10; // Prevent going off left edge
+					if (arrowLeft > tooltipRect.width - 10) arrowLeft = tooltipRect.width - 10; // Prevent going off right edge
+					
+					arrow.style.left = `${arrowLeft}px`;
+					
 					tooltip.classList.add('visible');
 				}
 			});
