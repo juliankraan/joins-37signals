@@ -143,7 +143,53 @@
         document.addEventListener('DOMContentLoaded', () => {
     const tooltip = document.getElementById('tooltip');
 
-    document.querySelectorAll('.highlight').forEach(element => {
+            document.querySelectorAll('.highlight').forEach(element => {
+        element.addEventListener('click', (event) => {
+            const key = element.getAttribute('data-key');
+            const data = tooltips[key];
+    
+            if (data) {
+                tooltip.innerHTML = `
+                    <div class='tooltip-title'>
+                        <i class='material-icons'>${data.icon}</i> ${data.title}
+                    </div>
+                    <div class='tooltip-content'>${data.content}</div>
+                `;
+                
+                // Position tooltip
+                const tooltipRect = tooltip.getBoundingClientRect();
+                const screenWidth = window.innerWidth;
+                const screenHeight = window.innerHeight;
+                
+                let leftPos = event.clientX - (tooltipRect.width / 2);
+                let topPos = event.clientY + 20; // Default below cursor
+    
+                if (leftPos < 5) leftPos = 5;
+                if (leftPos + tooltipRect.width > screenWidth) {
+                    leftPos = screenWidth - tooltipRect.width - 5;
+                }
+                if (topPos + tooltipRect.height > screenHeight) {
+                    topPos = event.clientY - tooltipRect.height - 10;
+                }
+    
+                tooltip.style.top = `${topPos}px`;
+                tooltip.style.left = `${leftPos}px`;
+    
+                // Show tooltip with animation
+                tooltip.classList.add('visible');
+            }
+        });
+    });
+    
+    // Close tooltip when clicking anywhere else
+    document.addEventListener('click', (event) => {
+        if (!event.target.classList.contains('highlight')) {
+            tooltip.classList.remove('visible');
+        }
+    });
+
+            
+    /*document.querySelectorAll('.highlight').forEach(element => {
         element.addEventListener('mouseenter', (event) => {
             const key = element.getAttribute('data-key');
             const data = tooltips[key];
@@ -189,7 +235,7 @@
             tooltip.style.opacity = '0';
             tooltip.style.visibility = 'hidden';
         });
-    });
+    });/*
 });
     </script>
 </body>
