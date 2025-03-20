@@ -182,7 +182,8 @@
 				        		if (tooltip.classList.contains('visible')) {
 				        			tooltip.classList.add('hiding');
 				        			setTimeout(() => {
-				                			showTooltip(element, data);
+				                			tooltip.classList.remove('visible', 'hiding');
+									showTooltip(element, data);
 								}, 200); // Matches the hide animation duration
 				        		} else {
 				        			showTooltip(element, data);
