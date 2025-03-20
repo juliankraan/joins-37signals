@@ -161,8 +161,28 @@
         });
 
         element.addEventListener('mousemove', (event) => {
-            tooltip.style.top = `${event.clientY + 20}px`;
-            tooltip.style.left = `${event.clientX - (tooltip.offsetWidth / 2)}px`;
+            const tooltipRect = tooltip.getBoundingClientRect();
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+            
+            let leftPos = event.clientX - (tooltipRect.width / 2);
+            let topPos = event.clientY + 20; // Default below the cursor
+        
+            // Prevent tooltip from going off the left edge
+            if (leftPos < 5) leftPos = 5;
+        
+            // Prevent tooltip from going off the right edge
+            if (leftPos + tooltipRect.width > screenWidth) {
+                leftPos = screenWidth - tooltipRect.width - 5;
+            }
+        
+            // Prevent tooltip from going off the bottom edge
+            if (topPos + tooltipRect.height > screenHeight) {
+                topPos = event.clientY - tooltipRect.height - 10; // Show above cursor instead
+            }
+        
+            tooltip.style.top = `${topPos}px`;
+            tooltip.style.left = `${leftPos}px`;
         });
 
         element.addEventListener('mouseleave', () => {
