@@ -68,9 +68,8 @@
 
 			.tooltip {
 				opacity: 0;
-				transform: scale(0.8);
-				transition: opacity 0.3s ease-out, transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-				position: fixed;
+				transform: translateY(10px); /* Start slightly lower */
+				position: absolute;
 				background-color: rgba(0, 0, 0, 0.9);
 				color: white;
 				text-align: left;
@@ -86,12 +85,13 @@
 			.tooltip.visible {
 				opacity: 1;
 				transform: translateY(0); /* Move to normal position */
-				/*transform: scale(1);*/
+				transition: opacity 0.2s ease-out, transform 0.2s ease-out; /* Smooth appear animation */
 			}
 
 			.tooltip.hiding {
     				opacity: 0;
     				transform: translateY(10px); /* Move downward while fading out */
+				transition: opacity 0.2s ease-in, transform 0.2s ease-in; /* Smooth disappear animation */
 			}
 
 			.tooltip-title {
